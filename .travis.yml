@@ -38,12 +38,12 @@ jobs:
       install: pip install -r requirements/dev.txt
       script: make python/lint
     - stage: deploy
-      if: branch = master AND type = push AND repo = plus3it/terraform-aws-tardigrade-cloudwatch-metric-alarm
+      if: branch = master AND type = push AND repo = plus3it/terraform-aws-tardigrade-cloudwatch-metric-alarms
       before_script:
         - |
           PRIOR_VERSION=$(git describe --abbrev=0 --tags)
           RELEASE_VERSION=$(grep current_version $TRAVIS_BUILD_DIR/.bumpversion.cfg | sed 's/^.*= //' )
-          RELEASE_BODY="* [terraform-aws-tardigrade-cloudwatch-metric-alarm v$RELEASE_VERSION CHANGELOG](https://github.com/plus3it/terraform-aws-tardigrade-cloudwatch-metric-alarm/blob/$RELEASE_VERSION/CHANGELOG.md)"
+          RELEASE_BODY="* [terraform-aws-tardigrade-cloudwatch-metric-alarms v$RELEASE_VERSION CHANGELOG](https://github.com/plus3it/terraform-aws-tardigrade-cloudwatch-metric-alarms/blob/$RELEASE_VERSION/CHANGELOG.md)"
           export PRIOR_VERSION RELEASE_VERSION RELEASE_BODY
       script: skip
       before_deploy:
@@ -60,5 +60,5 @@ jobs:
         draft: false
         on:
           branch: master
-          repo: plus3it/terraform-aws-tardigrade-cloudwatch-metric-alarm
+          repo: plus3it/terraform-aws-tardigrade-cloudwatch-metric-alarms
           condition: '"$PRIOR_VERSION" != "$RELEASE_VERSION"'

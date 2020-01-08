@@ -1,4 +1,4 @@
-## terraform-aws-tardigrade-cloudwatch-metric-alarm Change Log
+## terraform-aws-tardigrade-cloudwatch-metric-alarms Change Log
 
 All notable changes to this project will be documented in this file.
 
