@@ -1,4 +1,4 @@
-module terraform-aws-tardigrade-cloudwatch-metric-alarm/tests
+module terraform-aws-tardigrade-cloudwatch-metric-alarms/tests
 
 go 1.13
 

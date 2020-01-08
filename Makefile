@@ -142,7 +142,7 @@ python/format: | guard/program/black
 	@ echo "[$@]: Successfully formatted Python files!"
 
 terratest/install: | guard/program/go
-	cd tests && go mod init terraform-aws-tardigrade-cloudwatch-metric-alarm/tests
+	cd tests && go mod init terraform-aws-tardigrade-cloudwatch-metric-alarms/tests
 	cd tests && go build ./...
 	cd tests && go mod tidy
 

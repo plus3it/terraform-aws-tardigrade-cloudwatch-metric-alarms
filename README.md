@@ -1,4 +1,4 @@
-# terraform-aws-tardigrade-cloudwatch-metric-alarm
+# terraform-aws-tardigrade-cloudwatch-metric-alarms
 
 Terraform module to create CloudWatch Metric Alarms
 
