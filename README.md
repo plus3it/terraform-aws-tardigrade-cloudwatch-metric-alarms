@@ -26,12 +26,20 @@ Among the input variables, there is a schema list `metric_alarms` which take the
 * `evaluate_low_sample_count_percentiles` (string) - Used only for alarms based on percentiles. If you specify ignore, the alarm state will not change during periods with too few data points to be statistically significant. If you specify evaluate or omit this parameter, the alarm will always be evaluated and possibly change state no matter how many data points are available. The following values are supported: ignore, and evaluate.
 * `tags` (map(string)) - A mapping of tags to assign to all resources
 
+
+<!-- BEGIN TFDOCS -->
+## Providers
+
+| Name | Version |
+|------|---------|
+| aws | n/a |
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|:----:|:-----:|:-----:|
-| create\_metric\_alarm | Controls whether to create the CloudWatch metric alarm\(s\) | bool | `"true"` | no |
-| metric\_alarms | Schema list containing the fields noted in the Variable Defintions sections | list | `<list>` | no |
+|------|-------------|------|---------|:-----:|
+| create\_metric\_alarm | Controls whether to create the CloudWatch metric alarm(s) | `bool` | `true` | no |
+| metric\_alarms | Schema list containing the fields noted in the Variable Defintions sections | `list` | `[]` | no |
 
 ## Outputs
 
@@ -39,3 +47,4 @@ Among the input variables, there is a schema list `metric_alarms` which take the
 |------|-------------|
 | metric\_alarms | Maps of name => metric\_alarm objects |
 
+<!-- END TFDOCS -->
