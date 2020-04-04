@@ -28,6 +28,10 @@ Among the input variables, there is a schema list `metric_alarms` which take the
 
 
 <!-- BEGIN TFDOCS -->
+## Requirements
+
+No requirements.
+
 ## Providers
 
 | Name | Version |
@@ -37,7 +41,7 @@ Among the input variables, there is a schema list `metric_alarms` which take the
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:-----:|
+|------|-------------|------|---------|:--------:|
 | create\_metric\_alarm | Controls whether to create the CloudWatch metric alarm(s) | `bool` | `true` | no |
 | metric\_alarms | Schema list containing the fields noted in the Variable Defintions sections | `list` | `[]` | no |
 
