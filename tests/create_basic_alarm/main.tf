@@ -19,9 +19,3 @@ locals {
   ]
 }
 
-module "create_metric_alarm" {
-  source = "../../"
-
-  create_metric_alarm = true
-  metric_alarms       = local.metric_alarms
-}
