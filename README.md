@@ -42,7 +42,6 @@ No requirements.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| create\_metric\_alarm | Controls whether to create the CloudWatch metric alarm(s) | `bool` | `true` | no |
 | metric\_alarms | Schema list containing the fields noted in the Variable Defintions sections | `list` | `[]` | no |
 
 ## Outputs

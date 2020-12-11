@@ -1,5 +1,5 @@
 locals {
-  metric_alarms = var.create_metric_alarm ? { for alarm in var.metric_alarms : alarm.alarm_name => alarm } : {}
+  metric_alarms = { for alarm in var.metric_alarms : alarm.alarm_name => alarm }
 }
 
 resource "aws_cloudwatch_metric_alarm" "this" {
@@ -7,7 +7,7 @@ resource "aws_cloudwatch_metric_alarm" "this" {
 
   # alarm information
   alarm_name        = each.key
-  alarm_description = lookup(each.value, "alarm_name", null)
+  alarm_description = lookup(each.value, "alarm_description", null)
   actions_enabled   = lookup(each.value, "actions_enabled", true)
 
   # actions to take when the alarm enters the designated state
