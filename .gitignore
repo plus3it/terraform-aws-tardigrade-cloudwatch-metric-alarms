@@ -17,3 +17,6 @@ tardigrade-ci/
 
 # eclint
 .git/
+
+# terratest
+tests/go.*
