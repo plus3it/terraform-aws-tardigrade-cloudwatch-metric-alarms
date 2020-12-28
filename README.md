@@ -42,7 +42,7 @@ No requirements.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| metric\_alarms | Schema list containing the fields noted in the Variable Defintions sections | `list` | `[]` | no |
+| metric\_alarms | Schema list containing the fields noted in the Variable Defintions sections | `list(any)` | `[]` | no |
 
 ## Outputs
 
