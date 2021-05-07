@@ -36,18 +36,23 @@ No requirements.
 
 | Name | Version |
 |------|---------|
-| aws | n/a |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | n/a |
+
+## Resources
+
+| Name | Type |
+|------|------|
 
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| metric\_alarms | Schema list containing the fields noted in the Variable Defintions sections | `list(any)` | `[]` | no |
+| <a name="input_metric_alarms"></a> [metric\_alarms](#input\_metric\_alarms) | Schema list containing the fields noted in the Variable Defintions sections | `list(any)` | `[]` | no |
 
 ## Outputs
 
 | Name | Description |
 |------|-------------|
-| metric\_alarms | Maps of name => metric\_alarm objects |
+| <a name="output_metric_alarms"></a> [metric\_alarms](#output\_metric\_alarms) | Maps of name => metric\_alarm objects |
 
 <!-- END TFDOCS -->
