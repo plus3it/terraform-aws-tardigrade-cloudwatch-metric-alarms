@@ -16,34 +16,31 @@ resource "aws_cloudwatch_metric_alarm" "this" {
   insufficient_data_actions = lookup(each.value, "insufficient_data_actions", null)
 
   # metric information
-  metric_name        = lookup(each.value, "metric_name", null)
-  namespace          = lookup(each.value, "namespace", null)
-  dimensions         = lookup(each.value, "dimensions", null)
-  period             = lookup(each.value, "period", null)
-  statistic          = lookup(each.value, "statistic", null)
-  extended_statistic = lookup(each.value, "extended_statistic", null)
+  metric_name        = lookup(each.value, "metric_query", null) == null ? lookup(each.value, "metric_name", null) : null
+  namespace          = lookup(each.value, "metric_query", null) == null ? lookup(each.value, "namespace", null) : null
+  dimensions         = lookup(each.value, "metric_query", null) == null ? lookup(each.value, "dimensions", null) : null
+  period             = lookup(each.value, "metric_query", null) == null ? lookup(each.value, "period", null) : null
+  statistic          = lookup(each.value, "metric_query", null) == null ? lookup(each.value, "statistic", null) : null
+  extended_statistic = lookup(each.value, "metric_query", null) == null ? lookup(each.value, "extended_statistic", null) : null
 
   # metric query
   dynamic "metric_query" {
     for_each = lookup(each.value, "metric_query", [])
     content {
-      id          = lookup(metric_query.value, "id", null)
+      id          = metric_query.value.id
       expression  = lookup(metric_query.value, "expression", null)
       label       = lookup(metric_query.value, "label", null)
-      return_data = lookup(metric_query.value, "return_data", null)
+      return_data = lookup(metric_query.value, "return_data", true)
       period      = lookup(metric_query.value, "period", null)
       account_id  = lookup(metric_query.value, "account_id", null)
 
-      dynamic "metric" {
-        for_each = lookup(metric_query.value, "metric", null) != null ? [metric_query.value.metric] : []
-        content {
-          namespace   = lookup(metric.value, "namespace", null)
-          metric_name = lookup(metric.value, "metric_name", null)
-          dimensions  = lookup(metric.value, "dimensions", null)
-          period      = lookup(metric.value, "period", null)
-          stat        = lookup(metric.value, "stat", null)
-          unit        = lookup(metric.value, "unit", null)
-        }
+      metric {
+        namespace   = lookup(metric_query.value.metric, "namespace", null)
+        metric_name = lookup(metric_query.value.metric, "metric_name", null)
+        dimensions  = lookup(metric_query.value.metric, "dimensions", null)
+        period      = lookup(metric_query.value.metric, "period", null)
+        stat        = lookup(metric_query.value.metric, "stat", null)
+        unit        = lookup(metric_query.value.metric, "unit", null)
       }
     }
   }
