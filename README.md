@@ -12,6 +12,20 @@ Among the input variables, there is a schema list `metric_alarms` which take the
 * `threshold` (number) - The value against which the specified statistic is compared.
 * `unit` (string) - The unit for the alarm's associated metric.
 * `metric_name` (string) - The name for the alarm's associated metric. See docs for supported metrics.
+* `metric_query` (list(object)) - A list of metric query objects that define the metrics or expressions used by the alarm. Each object supports the following attributes:
+  * `id` (string) - A short name used to identify this metric within the alarm.
+  * `expression` (string, optional) - The metric math expression to be evaluated for this query.
+  * `label` (string, optional) - A human-readable label for this metric or expression.
+  * `return_data` (bool, optional) - Indicates whether this query should be returned as part of the alarm state.
+  * `period` (number, optional) - The period, in seconds, over which the specified statistic is applied.
+  * `account_id` (string, optional) - The ID of the account where the metric is located (for cross-account queries).
+  * `metric` (object, optional) - Defines a specific metric for this query. Supports the following attributes:
+    * `namespace` (string) - The namespace of the metric (e.g., `AWS/EC2`).
+    * `metric_name` (string) - The name of the metric (e.g., `CPUUtilization`).
+    * `dimensions` (map(string), optional) - A map of dimensions that identify the metric.
+    * `period` (number, optional) - The period, in seconds, over which the metric is evaluated.
+    * `stat` (string, optional) - The statistic to apply to the metric (e.g., `Average`, `Sum`, `Maximum`).
+    * `unit` (string, optional) - The unit for the metric.
 * `namespace` (string) - The namespace for the alarm's associated metric. See docs for the list of namespaces. See docs for supported metrics.
 * `period` (string) - The period in seconds over which the specified statistic is applied
 * `statistic` (string) - The statistic to apply to the alarm's associated metric. Either of the following is supported: SampleCount, Average, Sum, Minimum, Maximum
