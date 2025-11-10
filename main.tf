@@ -15,17 +15,17 @@ resource "aws_cloudwatch_metric_alarm" "this" {
   ok_actions                = lookup(each.value, "ok_actions", null)
   insufficient_data_actions = lookup(each.value, "insufficient_data_actions", null)
 
-  # metric information (either metric_name OR metric_query will be set)
-  metric_name        = each.value.metric_query == null ? lookup(each.value, "metric_name", null) : null
-  namespace          = each.value.metric_query == null ? lookup(each.value, "namespace", null) : null
-  dimensions         = each.value.metric_query == null ? lookup(each.value, "dimensions", null) : null
-  period             = each.value.metric_query == null ? lookup(each.value, "period", null) : null
-  statistic          = each.value.metric_query == null ? lookup(each.value, "statistic", null) : null
-  extended_statistic = each.value.metric_query == null ? lookup(each.value, "extended_statistic", null) : null
+  # metric information
+  metric_name        = lookup(each.value, "metric_name", null)
+  namespace          = lookup(each.value, "namespace", null)
+  dimensions         = lookup(each.value, "dimensions", null)
+  period             = lookup(each.value, "period", null)
+  statistic          = lookup(each.value, "statistic", null)
+  extended_statistic = lookup(each.value, "extended_statistic", null)
 
-  # metric query (dynamic block)
+  # metric query
   dynamic "metric_query" {
-    for_each = each.value.metric_query != null ? each.value.metric_query : []
+    for_each = lookup(each.value, "metric_query", [])
     content {
       id          = metric_query.value.id
       expression  = lookup(metric_query.value, "expression", null)

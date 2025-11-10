@@ -5,10 +5,13 @@ variable "metric_alarms" {
 
   validation {
     condition = alltrue([
-      for alarm in var.metric_alarms : anytrue([
-        (alarm.metric_query != null && alarm.metric_name == null),
-        (alarm.metric_query == null && alarm.metric_name != null),
-      ])
+      for alarm in var.metric_alarms : (
+        (
+          lookup(alarm, "metric_query", null) != null && lookup(alarm, "metric_name", null) == null
+          ) || (
+          lookup(alarm, "metric_query", null) == null && lookup(alarm, "metric_name", null) != null
+        )
+      )
     ])
     error_message = "Each alarm must specify either 'metric_query' or 'metric_name', but not both or neither."
   }
