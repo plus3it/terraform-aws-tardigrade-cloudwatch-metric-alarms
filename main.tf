@@ -23,6 +23,28 @@ resource "aws_cloudwatch_metric_alarm" "this" {
   statistic          = lookup(each.value, "statistic", null)
   extended_statistic = lookup(each.value, "extended_statistic", null)
 
+  # metric query
+  dynamic "metric_query" {
+    for_each = lookup(each.value, "metric_query", [])
+    content {
+      id          = metric_query.value.id
+      expression  = lookup(metric_query.value, "expression", null)
+      label       = lookup(metric_query.value, "label", null)
+      return_data = lookup(metric_query.value, "return_data", null)
+      period      = lookup(metric_query.value, "period", null)
+      account_id  = lookup(metric_query.value, "account_id", null)
+
+      metric {
+        namespace   = lookup(metric_query.value.metric, "namespace", null)
+        metric_name = lookup(metric_query.value.metric, "metric_name", null)
+        dimensions  = lookup(metric_query.value.metric, "dimensions", null)
+        period      = lookup(metric_query.value.metric, "period", null)
+        stat        = lookup(metric_query.value.metric, "stat", null)
+        unit        = lookup(metric_query.value.metric, "unit", null)
+      }
+    }
+  }
+
   # metric evaluation
   comparison_operator = lookup(each.value, "comparison_operator", null)
   evaluation_periods  = lookup(each.value, "evaluation_periods", 0)

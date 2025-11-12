@@ -4,6 +4,16 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/) and this project adheres to [Semantic Versioning](http://semver.org/).
 
+### 1.1.0
+
+**Commit Delta**: N/A
+
+**Released**: 2025.11.07
+
+**Summary**:
+
+*   Adding support for `metric_query`
+
 ### 0.0.0
 
 **Commit Delta**: N/A
